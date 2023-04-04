@@ -10,6 +10,8 @@ import com.projetomongo.demo.entidade.Usuario;
 @Repository
 public interface UsuarioRepository  extends  MongoRepository<Usuario,String> {
 
+   
+
     // void save(List<Usuario> asList);
 
  
