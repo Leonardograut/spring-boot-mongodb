@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.projetomongo.demo.UsuarioRepositorio.PostRepository;
 import com.projetomongo.demo.UsuarioRepositorio.UsuarioRepository;
+import com.projetomongo.demo.dto.AuthorDTO;
 import com.projetomongo.demo.entidade.Post;
 import com.projetomongo.demo.entidade.Usuario;
 
@@ -41,14 +42,14 @@ public class Instatiation  implements CommandLineRunner {
          Usuario alex = new Usuario(null, "Alex Green", "alex@gmail.com");
          Usuario bob = new Usuario(null, "Bob Grey", "bob@gmail.com");
 
-         
+         uRepository.saveAll(Arrays.asList(leonardo,alex,bob));
         
-         Post post1 = new Post(null, sdf.parse("21/03/2023"), "Bora Javeiro ", "Bora Progamar ate amanhecer",leonardo);
-         Post post2 = new Post(null, sdf.parse("21/04/2022"), "Bora Sair ", "Tudo bem nao sei se vou",leonardo); 
+         Post post1 = new Post(null, sdf.parse("21/03/2023"), "Bora Javeiro ", "Bora Progamar ate amanhecer",new AuthorDTO(leonardo));
+         Post post2 = new Post(null, sdf.parse("21/04/2022"), "Bora Sair ", "Tudo bem nao sei se vou",new AuthorDTO(leonardo)); 
 
 
-      uRepository.saveAll(Arrays.asList(leonardo,alex,bob));
-      postRepository.saveAll(Arrays.asList(post1,post2));
+     
+            postRepository.saveAll(Arrays.asList(post1,post2));
 
          
     }
