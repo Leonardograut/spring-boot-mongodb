@@ -43,6 +43,21 @@ public Usuario insert(Usuario obj){
 }
 
 
+public Usuario update(Usuario obj){
+
+         Usuario newObj = findById(obj.getId());
+         updateData(newObj, obj);
+         return repository.save(newObj);
+}
+
+private void updateData(Usuario newObj, Usuario obj) {
+
+    newObj.setName(obj.getName());
+    newObj.setEmail(obj.getEmail());
+}
+
+
+
 public Usuario fromDTO(UsuarioDTO objDto){
     return new Usuario(objDto.getId(),objDto.getName(), objDto.getEmail());
 }
