@@ -21,6 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.projetomongo.demo.Service.UsuarioService;
 import com.projetomongo.demo.dto.UsuarioDTO;
+import com.projetomongo.demo.entidade.Post;
 import com.projetomongo.demo.entidade.Usuario;
 
 @RestController
@@ -42,8 +43,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioDTO>findById(@PathVariable String id){ 
-        
-        Usuario obj = uService.findById(id);    
+           Usuario obj = uService.findById(id);    
         return ResponseEntity.ok().body(new UsuarioDTO(obj));
     }
 
@@ -73,15 +73,20 @@ public class UsuarioController {
 
 
 
-
-
-
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void>delete(@PathVariable String id){ 
         
        uService.delete(id);    
         return ResponseEntity.noContent().build();
+    }
+
+
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>>findPosts(@PathVariable String id){ 
+           Usuario obj = uService.findById(id);    
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 
 
