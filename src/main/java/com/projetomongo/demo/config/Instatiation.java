@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import com.projetomongo.demo.UsuarioRepositorio.PostRepository;
 import com.projetomongo.demo.UsuarioRepositorio.UsuarioRepository;
 import com.projetomongo.demo.dto.AuthorDTO;
+import com.projetomongo.demo.dto.CommentDTO;
 import com.projetomongo.demo.entidade.Post;
 import com.projetomongo.demo.entidade.Usuario;
 
@@ -48,11 +49,19 @@ public class Instatiation  implements CommandLineRunner {
          Post post2 = new Post(null, sdf.parse("21/04/2022"), "Bora Sair ", "Tudo bem nao sei se vou",new AuthorDTO(leonardo)); 
 
 
-     
-            postRepository.saveAll(Arrays.asList(post1,post2));
+         
+       CommentDTO c1  = new CommentDTO("Boa viagem mano!", sdf.parse("21/03/2018"), new AuthorDTO(alex));
+       CommentDTO c2  = new CommentDTO("Aproveite", sdf.parse("23/03/2018"), new AuthorDTO(bob));
+       CommentDTO c3  = new CommentDTO("Tenha um otimo dia!", sdf.parse("22/03/2018"), new AuthorDTO(alex));
 
-           leonardo.getPosts().addAll(Arrays.asList(post1,post2));
-           uRepository.save(leonardo);
+       post1.getComments().addAll(Arrays.asList(c1,c2));
+       post2.getComments().addAll(Arrays.asList(c3));
+
+     
+         postRepository.saveAll(Arrays.asList(post1,post2));
+
+         leonardo.getPosts().addAll(Arrays.asList(post1,post2));
+         uRepository.save(leonardo);
 
          
     }
